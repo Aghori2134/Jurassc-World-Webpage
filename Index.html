@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurassic World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #03121a;
+        }
+
+        .hero {
+            background:
+                linear-gradient(90deg, rgba(0,10,15,.95), rgba(0,10,15,.3)),
+                linear-gradient(0deg, #03121a, transparent 50%),
+                url("images/hero.png");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .glass {
+            background: rgba(3,18,26,.85);
+            backdrop-filter: blur(14px);
+        }
+
+        .dino-card img {
+            transition: transform .5s;
+        }
+
+        .dino-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .dino-card {
+            transition: .3s;
+        }
+
+        .dino-card:hover {
+            transform: translateY(-5px);
+            border-color: #facc15;
+        }
+
+        .video-modal {
+            display: none;
+        }
+
+        details[open] .video-modal {
+            display: flex;
+        }
+
+        .video-box {
+            animation: popup .3s ease;
+        }
+
+        @keyframes popup {
+            from {
+                opacity: 0;
+                transform: scale(.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="text-white">
+<header class="glass sticky top-0 z-50 border-b border-cyan-900">
+    <nav class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+
+        <a href="#home" class="text-xl md:text-2xl font-black tracking-wide flex">
+           <img src="https://1000logos.net/wp-content/uploads/2017/10/Jurassic-Park-Logo-2018.png" class="w-28">
+        </a>
+
+        <div class="hidden lg:flex gap-7 text-sm text-gray-300">
+            <a href="#home" class="hover:text-yellow-400">Home</a>
+            <a href="#dinosaurs" class="hover:text-yellow-400">Dinosaurs</a>
+            <a href="#park" class="hover:text-yellow-400">Park</a>
+            <a href="#movies" class="hover:text-yellow-400">Movies</a>
+            <a href="#gallery" class="hover:text-yellow-400">Gallery</a>
+            <a href="#news" class="hover:text-yellow-400">News</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <a href="#movies" aria-label="Search movies"
+               class="text-xl hover:text-yellow-400">
+                <i class="ri-search-line"></i>
+            </a>
+
+            <a href="#tickets"
+               class="bg-yellow-400 text-black px-4 md:px-5 py-2 rounded-full font-bold text-sm hover:bg-yellow-300 transition">
+                Explore More <i class="ri-arrow-right-up-line"></i>
+            </a>
+        </div>
+    </nav>
+</header>
+<section id="home" class="hero min-h-[650px] md:min-h-[720px] flex items-center">
+    <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+
+        <div class="max-w-2xl">
+            <p class="text-yellow-400 uppercase tracking-[.3em] text-sm font-bold">
+                <i class="ri-flashlight-line"></i> The Adventure Begins
+            </p>
+
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-black leading-none mt-5">
+                WELCOME TO
+                <span class="block text-yellow-400">JURASSIC</span>
+                WORLD
+            </h1>
+
+            <p class="text-gray-300 text-base md:text-lg mt-6 max-w-lg leading-8">
+                Enter a world where prehistoric giants roam the earth.
+                Discover mysterious jungles, incredible creatures and
+                the adventure of a lifetime.
+            </p>
+
+            <div class="flex flex-wrap gap-4 mt-8">
+                <a href="#dinosaurs"
+                   class="bg-yellow-400 text-black px-7 py-3 rounded-full font-bold hover:bg-yellow-300 transition">
+                    Explore Dinosaurs <i class="ri-arrow-right-line"></i>
+                </a>
+
+                <a href="#movies"
+                   class="border border-white/60 px-7 py-3 rounded-full hover:bg-white hover:text-black transition">
+                    <i class="ri-play-circle-line text-xl align-middle"></i>
+                    Watch Movies
+                </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-5 max-w-md mt-12 border-t border-white/20 pt-6">
+                <div>
+                    <h3 class="text-3xl font-black text-yellow-400">25+</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Dinosaur Species</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-black text-yellow-400">06</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Epic Movies</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-black text-yellow-400">01</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Amazing World</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-[#061c26] border-y border-cyan-900">
+    <div class="max-w-7xl mx-auto px-5 py-7 grid grid-cols-2 md:grid-cols-4 gap-7">
+
+        <div class="flex items-center gap-4">
+            <i class="ri-footprint-line text-3xl text-cyan-300"></i>
+            <div>
+                <h3 class="font-bold text-sm">Living Dinosaurs</h3>
+                <p class="text-xs text-gray-400">Discover the giants</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <i class="ri-leaf-line text-3xl text-cyan-300"></i>
+            <div>
+                <h3 class="font-bold text-sm">Wild Adventures</h3>
+                <p class="text-xs text-gray-400">Explore the jungle</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <i class="ri-flask-line text-3xl text-cyan-300"></i>
+            <div>
+                <h3 class="font-bold text-sm">Genetic Research</h3>
+                <p class="text-xs text-gray-400">Science meets nature</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <i class="ri-landscape-line text-3xl text-cyan-300"></i>
+            <div>
+                <h3 class="font-bold text-sm">Island Exploration</h3>
+                <p class="text-xs text-gray-400">Adventure awaits</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="dinosaurs" class="max-w-7xl mx-auto px-5 py-20">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
+        <div>
+            <p class="text-yellow-400 text-xs tracking-[.3em] font-bold uppercase">
+                Meet the legends
+            </p>
+            <h2 class="text-3xl md:text-5xl font-black mt-3">Featured Dinosaurs</h2>
+            <p class="text-gray-400 mt-3 max-w-xl">
+                Discover the incredible creatures that ruled the prehistoric world.
+            </p>
+        </div>
+
+        <a href="#gallery" class="text-yellow-400 hover:text-white">
+            View All Dinosaurs <i class="ri-arrow-right-line"></i>
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article class="dino-card overflow-hidden rounded-2xl bg-[#071e29] border border-cyan-900/60">
+            <div class="h-56 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmjpAy-5U-RuVwmeFm4pgsqTnv8FjcpVfFT0J3oQomTw&s"
+                     alt="Prehistoric wilderness">
+            </div>
+            <div class="p-5">
+                <p class="text-xs text-yellow-400 font-bold tracking-widest">01 / PREDATOR</p>
+                <h3 class="text-2xl font-black mt-2">Tyrannosaurus Rex</h3>
+                <p class="text-gray-400 text-sm mt-3 leading-6">
+                    The legendary king of the prehistoric world, famous for its powerful jaws.
+                </p>
+                <a href="#movies" class="inline-block mt-5 text-yellow-400 text-sm font-bold">
+                    Discover More <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </article>
+
+        <article class="dino-card overflow-hidden rounded-2xl bg-[#071e29] border border-cyan-900/60">
+            <div class="h-56 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9l7-VsJr5ckCaEwu6OZjNFHdVGFAT-k8eE0UNtNCWqw&s=10"
+                     alt="Dense prehistoric jungle">
+            </div>
+            <div class="p-5">
+                <p class="text-xs text-yellow-400 font-bold tracking-widest">02 / INTELLIGENT</p>
+                <h3 class="text-2xl font-black mt-2">Velociraptor</h3>
+                <p class="text-gray-400 text-sm mt-3 leading-6">
+                    Fast, clever and highly adaptable hunters known for teamwork.
+                </p>
+                <a href="#movies" class="inline-block mt-5 text-yellow-400 text-sm font-bold">
+                    Discover More <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </article>
+
+        <article class="dino-card overflow-hidden rounded-2xl bg-[#071e29] border border-cyan-900/60">
+            <div class="h-56 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoqjFgWH2UxKf80LaMq63DA0x0OCWhewyVTBJkx11_nQ&s=10"
+                     alt="Wildlife in a natural landscape">
+            </div>
+            <div class="p-5">
+                <p class="text-xs text-yellow-400 font-bold tracking-widest">03 / HERBIVORE</p>
+                <h3 class="text-2xl font-black mt-2">Brachiosaurus</h3>
+                <p class="text-gray-400 text-sm mt-3 leading-6">
+                    A magnificent giant with a long neck towering above the forest canopy.
+                </p>
+                <a href="#movies" class="inline-block mt-5 text-yellow-400 text-sm font-bold">
+                    Discover More <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </article>
+
+        <article class="dino-card overflow-hidden rounded-2xl bg-[#071e29] border border-cyan-900/60">
+            <div class="h-56 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_ydZ-9fMoHxj5yiq3L28x81aHP7bnx3nwqQbqhretTg&s=10"
+                     alt="Mysterious forest">
+            </div>
+            <div class="p-5">
+                <p class="text-xs text-yellow-400 font-bold tracking-widest">04 / ARMORED</p>
+                <h3 class="text-2xl font-black mt-2">Triceratops</h3>
+                <p class="text-gray-400 text-sm mt-3 leading-6">
+                    Recognizable by its three horns and protective bony frill.
+                </p>
+                <a href="#movies" class="inline-block mt-5 text-yellow-400 text-sm font-bold">
+                    Discover More <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </article>
+
+        <article class="dino-card overflow-hidden rounded-2xl bg-[#071e29] border border-cyan-900/60">
+            <div class="h-56 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTulRoyrNwH1yzw6GXtatYzcystl9fGaSoI6X1U6jI46w&s=10"
+                     alt="Dramatic prehistoric landscape">
+            </div>
+            <div class="p-5">
+                <p class="text-xs text-yellow-400 font-bold tracking-widest">05 / PREDATOR</p>
+                <h3 class="text-2xl font-black mt-2">Spinosaurus</h3>
+                <p class="text-gray-400 text-sm mt-3 leading-6">
+                    A remarkable predator with a distinctive sail-shaped structure.
+                </p>
+                <a href="#movies" class="inline-block mt-5 text-yellow-400 text-sm font-bold">
+                    Discover More <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </article>
+
+        <article class="dino-card overflow-hidden rounded-2xl bg-[#071e29] border border-cyan-900/60">
+            <div class="h-56 overflow-hidden">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFHwHAl-SB-gge1UODTlbwb0nltoVL5NmdB7ueTWa4w&s=10"
+                     alt="Wild landscape">
+            </div>
+            <div class="p-5">
+                <p class="text-xs text-yellow-400 font-bold tracking-widest">06 / HYBRID</p>
+                <h3 class="text-2xl font-black mt-2">Indominus Rex</h3>
+                <p class="text-gray-400 text-sm mt-3 leading-6">
+                    A fictional hybrid dinosaur created through genetic engineering.
+                </p>
+                <a href="#movies" class="inline-block mt-5 text-yellow-400 text-sm font-bold">
+                    Discover More <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </article>
+
+    </div>
+</section>
+<section id="park" class="bg-[#071e29] border-y border-cyan-900/60">
+    <div class="max-w-7xl mx-auto px-5 py-20 grid md:grid-cols-2 gap-12 items-center">
+
+        <div>
+            <p class="text-yellow-400 text-xs font-bold tracking-[.3em] uppercase">
+                Beyond imagination
+            </p>
+
+            <h2 class="text-4xl md:text-5xl font-black mt-4 leading-tight">
+                More Than Just
+                <span class="text-yellow-400">A Theme Park</span>
+            </h2>
+
+            <p class="text-gray-300 mt-6 leading-7">
+                Discover prehistoric habitats, scientific wonders and
+                incredible attractions in a world full of adventure.
+            </p>
+
+            <div class="grid grid-cols-2 gap-6 mt-8">
+
+                <div>
+                    <i class="ri-route-line text-3xl text-yellow-400"></i>
+                    <h3 class="font-bold mt-2">Jungle Tours</h3>
+                    <p class="text-sm text-gray-400 mt-1">Explore wild habitats</p>
+                </div>
+
+                <div>
+                    <i class="ri-flask-line text-3xl text-yellow-400"></i>
+                    <h3 class="font-bold mt-2">Discovery Center</h3>
+                    <p class="text-sm text-gray-400 mt-1">Learn about genetics</p>
+                </div>
+
+                <div>
+                    <i class="ri-eye-line text-3xl text-yellow-400"></i>
+                    <h3 class="font-bold mt-2">Dino Encounter</h3>
+                    <p class="text-sm text-gray-400 mt-1">Meet ancient giants</p>
+                </div>
+
+                <div>
+                    <i class="ri-compass-3-line text-3xl text-yellow-400"></i>
+                    <h3 class="font-bold mt-2">Island Safari</h3>
+                    <p class="text-sm text-gray-400 mt-1">Explore the unknown</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="relative">
+            <img class="w-full h-[400px] object-cover rounded-2xl"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLMAJjccPA9MPNVVvT1HvGzJBLoZBl3PrURIpyD11Rsw&s=10"
+                 alt="Lush forest">
+
+            <div class="absolute bottom-5 left-5 right-5 glass rounded-xl p-5">
+                <p class="text-yellow-400 text-xs font-bold tracking-widest">YOUR NEXT ADVENTURE</p>
+                <h3 class="text-2xl font-black mt-2">Discover the Unknown</h3>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="movies" class="max-w-7xl mx-auto px-5 py-20">
+
+    <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="text-yellow-400 text-xs font-bold tracking-[.3em] uppercase">
+            The cinematic universe
+        </p>
+        <h2 class="text-4xl md:text-5xl font-black mt-4">Jurassic Movies</h2>
+        <p class="text-gray-400 mt-4 leading-7">
+            Relive the unforgettable moments and thrilling adventures
+            from the Jurassic film universe.
+        </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="bg-[#071e29] rounded-2xl overflow-hidden border border-cyan-900/60">
+
+            <div class="relative h-64">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSVQtx5D2tR5IiocBmkA1jvbptzx_Js5yxjL0dx3iYg&s"
+                     alt="Jungle movie scene">
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+
+                <span class="absolute top-4 left-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full">
+                    CLASSIC
+                </span>
+
+                <div class="absolute bottom-5 left-5">
+                    <p class="text-sm text-yellow-400">1993 · Adventure</p>
+                    <h3 class="text-2xl font-black">Jurassic Park</h3>
+                </div>
+            </div>
+
+            <div class="p-5">
+                <p class="text-gray-400 text-sm leading-6 mb-5">
+                    An extraordinary island brings prehistoric creatures back to life.
+                </p>
+
+                <details>
+    <summary class="bg-yellow-400 text-black text-center font-bold rounded-full px-5 py-3 hover:bg-yellow-300 transition">
+        <i class="ri-play-circle-fill text-lg align-middle"></i>
+        Watch Trailer
+    </summary>
+
+    <div class="video-modal fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4">
+        <div class="video-box w-full max-w-4xl bg-[#071e29] border border-cyan-800 rounded-2xl overflow-hidden">
+
+            <div class="flex justify-between items-center p-4">
+                <h3 class="font-bold">Jurassic World — Trailer</h3>
+
+                <button type="button"
+                    onclick="this.closest('details').removeAttribute('open')"
+                    class="text-2xl text-yellow-400 hover:text-white"
+                    aria-label="Close video">
+                    <i class="ri-close-circle-line"></i>
+                </button>
+            </div>
+
+            <div class="aspect-video">
+                <video class="w-full h-full"
+                    controls
+                    playsinline
+                    preload="metadata">
+
+                    <source src="videos/jurassic2.mp4"
+                        type="video/mp4">
+
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        </div>
+    </div>
+</details>
+            </div>
+        </article>
+        <article class="bg-[#071e29] rounded-2xl overflow-hidden border border-cyan-900/60">
+
+            <div class="relative h-64">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScYLO41mTTI7eff4x0tKTOq912wXfDP30GwJ_6kIW7DA&s=10"
+                     alt="Wildlife landscape">
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+
+                <span class="absolute top-4 left-4 bg-cyan-300 text-black text-xs font-bold px-3 py-1 rounded-full">
+                    ADVENTURE
+                </span>
+
+                <div class="absolute bottom-5 left-5">
+                    <p class="text-sm text-yellow-400">2015 · Sci-Fi</p>
+                    <h3 class="text-2xl font-black">Jurassic World</h3>
+                </div>
+            </div>
+
+            <div class="p-5">
+                <p class="text-gray-400 text-sm leading-6 mb-5">
+                    A spectacular dinosaur park opens its gates, but a new creation
+                    threatens everything.
+                </p>
+
+                <details>
+    <summary class="bg-yellow-400 text-black text-center font-bold rounded-full px-5 py-3 hover:bg-yellow-300 transition">
+        <i class="ri-play-circle-fill text-lg align-middle"></i>
+        Watch Trailer
+    </summary>
+
+    <div class="video-modal fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4">
+        <div class="video-box w-full max-w-4xl bg-[#071e29] border border-cyan-800 rounded-2xl overflow-hidden">
+
+            <div class="flex justify-between items-center p-4">
+                <h3 class="font-bold">Jurassic World — Trailer</h3>
+
+                <button type="button"
+                    onclick="this.closest('details').removeAttribute('open')"
+                    class="text-2xl text-yellow-400 hover:text-white"
+                    aria-label="Close video">
+                    <i class="ri-close-circle-line"></i>
+                </button>
+            </div>
+
+            <div class="aspect-video">
+                <video class="w-full h-full"
+                    controls
+                    playsinline
+                    preload="metadata">
+
+                    <source src="videos/jurassic2.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+
+        </div>
+    </div>
+</details>
+            </div>
+        </article>
+        <article class="bg-[#071e29] rounded-2xl overflow-hidden border border-cyan-900/60">
+
+            <div class="relative h-64">
+                <img class="w-full h-full object-cover"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8Wjft-KMNedLEN1Ayml6iyB8kkMDaWX-Eh50XdFY14A&s=10"
+                     alt="Dramatic sunset">
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+
+                <span class="absolute top-4 left-4 bg-purple-300 text-black text-xs font-bold px-3 py-1 rounded-full">
+                    NEW ERA
+                </span>
+
+                <div class="absolute bottom-5 left-5">
+                    <p class="text-sm text-yellow-400">2022 · Adventure</p>
+                    <h3 class="text-2xl font-black">Dominion</h3>
+                </div>
+            </div>
+
+            <div class="p-5">
+                <p class="text-gray-400 text-sm leading-6 mb-5">
+                    Dinosaurs and humans share the planet as the future of both
+                    species hangs in the balance.
+                </p>
+
+                <details>
+						<summary class="bg-yellow-400 text-black text-center font-bold rounded-full px-5 py-3 hover:bg-yellow-300 transition">
+							<i class="ri-play-circle-fill text-lg align-middle"></i>
+							Watch Trailer
+						</summary>
+
+						<div class="video-modal fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4">
+							<div class="video-box w-full max-w-4xl bg-[#071e29] border border-cyan-800 rounded-2xl overflow-hidden">
+
+								<div class="flex justify-between items-center p-4">
+									<h3 class="font-bold">Jurassic World — Trailer</h3>
+
+									<button type="button"
+										onclick="this.closest('details').removeAttribute('open')"
+										class="text-2xl text-yellow-400 hover:text-white"
+										aria-label="Close video">
+										<i class="ri-close-circle-line"></i>
+									</button>
+								</div>
+
+								<div class="aspect-video">
+									<video class="w-full h-full"
+										controls
+										playsinline
+										preload="metadata">
+
+										<source src="videos/jurassic2.mp4"
+											type="video/mp4">
+
+										Your browser does not support the video tag.
+									</video>
+								</div>
+
+							</div>
+			</div>
+		</details>
+            </div>
+        </article>
+
+    </div>
+</section>
+<section id="gallery" class="bg-[#071e29] border-y border-cyan-900">
+    <div class="max-w-7xl mx-auto px-5 py-20">
+
+        <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 mb-8">
+            <div>
+                <p class="text-yellow-400 text-xs tracking-[.3em] font-bold uppercase">
+                    Captured moments
+                </p>
+                <h2 class="text-4xl md:text-5xl font-black mt-3">Into the Wild</h2>
+            </div>
+
+            <p class="text-gray-400 max-w-md text-sm leading-6">
+                Discover breathtaking forests, mysterious landscapes and
+                unforgettable adventures.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+            <img class="col-span-2 h-64 md:h-80 w-full object-cover rounded-xl hover:opacity-80 transition"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgMm371cYMQrbGC6cMq-W1GyARI9dhxPgFkuNYzG7BwA&s=10"
+                 alt="Forest landscape">
+
+            <img class="h-64 md:h-80 w-full object-cover rounded-xl hover:opacity-80 transition"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSryE4_mf4Z1NmsaiCGOCi7dj4KgAqzTVf67GFSM5hv9w&s=10"
+                 alt="Wildlife">
+
+            <img class="h-64 md:h-80 w-full object-cover rounded-xl hover:opacity-80 transition"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPGbSvC7KXHXGaPjEPwAv1uWrCVM_I7CLEo-k2I5u_fA&s=10"
+                 alt="Jungle">
+
+            <img class="h-48 w-full object-cover rounded-xl hover:opacity-80 transition"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6Ez3cMlfeZDZQ-ydfuIwbEdGQ1m26UC7MMFC70mAxdg&s=10"
+                 alt="Sunset">
+
+            <img class="h-48 w-full object-cover rounded-xl hover:opacity-80 transition"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKwO9LO9v-6jh61CYYsPxh2bGdT-pXF56mA0EDUVpfDA&s=10"
+                 alt="Mountain landscape">
+
+            <img class="col-span-2 h-48 w-full object-cover rounded-xl hover:opacity-80 transition"
+                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk0bnW83052Pxxp3mu6t1gLXim05EqhMMjCMdh6BuRKw&s=10"
+                 alt="Ocean">
+        </div>
+    </div>
+</section>
+<section id="news" class="max-w-7xl mx-auto px-5 py-20">
+
+    <div class="mb-10">
+        <p class="text-yellow-400 text-xs tracking-[.3em] font-bold uppercase">
+            From the island
+        </p>
+        <h2 class="text-4xl md:text-5xl font-black mt-3">Latest Stories</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+        <article class="border-b md:border-b-0 md:border-r border-cyan-900 pb-6 md:pr-6">
+            <i class="ri-footprint-line text-3xl text-yellow-400"></i>
+            <p class="text-xs text-yellow-400 font-bold mt-4">PARK UPDATES</p>
+            <h3 class="text-xl font-bold mt-3">Discover Ancient Giants</h3>
+            <p class="text-gray-400 text-sm leading-6 mt-3">
+                Explore the fascinating world of prehistoric creatures.
+            </p>
+            <a href="#dinosaurs" class="inline-block mt-4 text-yellow-400 text-sm font-bold">
+                Read Story <i class="ri-arrow-right-line"></i>
+            </a>
+        </article>
+
+        <article class="border-b md:border-b-0 md:border-r border-cyan-900 pb-6 md:pr-6">
+            <i class="ri-film-line text-3xl text-yellow-400"></i>
+            <p class="text-xs text-yellow-400 font-bold mt-4">MOVIES</p>
+            <h3 class="text-xl font-bold mt-3">The Jurassic Legacy</h3>
+            <p class="text-gray-400 text-sm leading-6 mt-3">
+                Revisit the cinematic moments of the dinosaur franchise.
+            </p>
+            <a href="#movies" class="inline-block mt-4 text-yellow-400 text-sm font-bold">
+                Watch Trailers <i class="ri-arrow-right-line"></i>
+            </a>
+        </article>
+
+        <article>
+            <i class="ri-compass-3-line text-3xl text-yellow-400"></i>
+            <p class="text-xs text-yellow-400 font-bold mt-4">EXPLORATION</p>
+            <h3 class="text-xl font-bold mt-3">Into the Mysterious Jungle</h3>
+            <p class="text-gray-400 text-sm leading-6 mt-3">
+                Experience environments inspired by prehistoric nature.
+            </p>
+            <a href="#gallery" class="inline-block mt-4 text-yellow-400 text-sm font-bold">
+                Explore Gallery <i class="ri-arrow-right-line"></i>
+            </a>
+        </article>
+
+    </div>
+</section>
+<section id="tickets" class="px-5 pb-20">
+    <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden relative bg-[#0b2932] border border-yellow-500/40">
+
+        <div class="absolute inset-0 opacity-30"
+             style="background-image:url('images/hero2.png')">
+        </div>
+
+        <div class="relative p-8 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div>
+                <p class="text-yellow-400 text-xs font-bold tracking-[.3em] uppercase">
+                    Your adventure awaits
+                </p>
+                <h2 class="text-3xl md:text-5xl font-black mt-4">
+                    Ready to Enter the Wild?
+                </h2>
+                <p class="text-gray-300 mt-4 max-w-xl leading-7">
+                    Get ready for an unforgettable journey into a world
+                    where the impossible comes to life.
+                </p>
+            </div>
+
+            <a href="#home"
+               class="shrink-0 bg-yellow-400 text-black px-8 py-4 rounded-full font-black hover:bg-yellow-300 transition">
+                Start Exploring <i class="ri-arrow-right-line"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<footer class="bg-[#020b10] border-t border-cyan-900">
+    <div class="max-w-7xl mx-auto px-5 py-12">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+            <div>
+                <a href="#home" class="text-xl font-black">
+                    <img src="https://1000logos.net/wp-content/uploads/2017/10/Jurassic-Park-Logo-2018.png" class="w-28">
+                </a>
+                <p class="text-gray-500 text-sm mt-4 leading-6 max-w-xs">
+                    Life finds a way. Explore a world beyond imagination.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-4">Explore</h3>
+                <div class="flex flex-col gap-3 text-sm text-gray-400">
+                    <a href="#dinosaurs" class="hover:text-yellow-400">Dinosaurs</a>
+                    <a href="#park" class="hover:text-yellow-400">The Park</a>
+                    <a href="#gallery" class="hover:text-yellow-400">Gallery</a>
+                    <a href="#movies" class="hover:text-yellow-400">Movies</a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-4">Information</h3>
+                <div class="flex flex-col gap-3 text-sm text-gray-400">
+                    <a href="#news" class="hover:text-yellow-400">Latest Stories</a>
+                    <a href="#tickets" class="hover:text-yellow-400">Tickets</a>
+                    <a href="#home" class="hover:text-yellow-400">About Us</a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold mb-4">Follow the Adventure</h3>
+                <p class="text-sm text-gray-400 leading-6">
+                    Discover more prehistoric adventures.
+                </p>
+
+                <div class="flex gap-3 mt-4">
+                    <a href="#home" aria-label="Instagram"
+                       class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition">
+                        <i class="ri-instagram-line text-xl"></i>
+                    </a>
+
+                    <a href="#home" aria-label="YouTube"
+                       class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition">
+                        <i class="ri-youtube-line text-xl"></i>
+                    </a>
+
+                    <a href="#home" aria-label="Facebook"
+                       class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition">
+                        <i class="ri-facebook-fill text-xl"></i>
+                    </a>
+
+                    <a href="#home" aria-label="Twitter or X"
+                       class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-yellow-400 hover:text-black transition">
+                        <i class="ri-twitter-x-line text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-xs text-gray-500">
+            <p>© 2026 Jurassic World Fan-Made Practice Website.</p>
+            <p>Created with HTML, Tailwind CSS & Remix Icons.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
